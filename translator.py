@@ -22,26 +22,15 @@ class Translator:
         with open(dict, 'r', encoding='utf-8') as f:
             for riga in f:
                 riga = (riga.strip('\n')).split(" ")
-                if len(riga)==2:
+                if len(riga) == 2:
                     self.diz.addWord(riga[0], [riga[1]])
 
-        pass
-
     def handleAdd(self, entry):
-        entry = entry.split(" ")
-        traduzioni = []
-        for i in range(1, len(entry)):
-            traduzioni.append(entry[i])
-
-        for t in traduzioni:
-            self.diz.addWord(entry[0], [t])
-
-        pass
+        for t in entry[1:]:
+            self.diz.addWord(p_aliena=entry[0], p_italiana=t)
 
     def handleTranslate(self, query):
         return self.diz.translate(query)
-        pass
 
     def handleWildCard(self, query):
-        print(f'Le parole sono: {self.diz.translateWordWildCard(query)}')
-        pass
+        return self.diz.translateWordWildCard(query)
